@@ -10,10 +10,35 @@
 site_configuration = {
     'systems': [
         {
+            'name': 'hbrs',
+            'descr': 'Azure HB',
+            'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
+            'hostnames': ['*_hb_*'],
+            'modules_system': 'tmod32',
+            'partitions': [
+                {
+                    'name': 'default',
+                    'scheduler': 'local',
+                    'launcher': 'local',
+                    'environs': ['gnu-azhpc-cos7'],
+                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
+                },
+                {
+                    'name': 'hb',
+                    'scheduler': 'slurm',
+                    'launcher': 'srun',
+                    'max_jobs': 100,
+                    'access': ['-p hb'],
+                    'environs': ['gnu-azhpc-cos7'],
+                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
+                }
+            ]
+        },
+        {
             'name': 'hbrs_v2',
             'descr': 'Azure HBv2',
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
-            'hostnames': [''],
+            'hostnames': ['*_hbv2_*'],
             'modules_system': 'tmod32',
             'partitions': [
                 {
@@ -28,6 +53,7 @@ site_configuration = {
                     'scheduler': 'slurm',
                     'launcher': 'srun',
                     'max_jobs': 100,
+                    'access': ['-p hbv2'],
                     'environs': ['gnu-azhpc-cos7'],
                     'prepare_cmds': ['source /etc/profile.d/modules.sh']
                 }
@@ -38,7 +64,7 @@ site_configuration = {
             'descr': 'Azure HBv3',
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
             'vm_size': 'HB120rs_v3',
-            'hostnames': ['*hbv3*'],
+            'hostnames': ['*_hbv3_*'],
             'modules_system': 'tmod32',
             'partitions': [
                 {
@@ -63,7 +89,7 @@ site_configuration = {
             'name': 'hcrs',
             'descr': 'Azure HC',
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
-            'hostnames': [''],
+            'hostnames': ['*_hc_*'],
             'modules_system': 'tmod32',
             'partitions': [
                 {
