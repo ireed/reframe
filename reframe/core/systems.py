@@ -7,6 +7,7 @@ import re
 import json
 
 import reframe.utility as util
+import reframe.core.azure as azure
 import reframe.utility.jsonext as jsonext
 from reframe.core.backends import (getlauncher, getscheduler)
 from reframe.core.environments import (Environment, ProgEnvironment)
@@ -164,8 +165,8 @@ class SystemPartition(jsonext.JSONSerializable):
     '''
 
     def __init__(self, *, parent, name, sched_type, launcher_type,
-                 descr, access, container_runtime, container_environs,
-                 resources, local_env, environs, max_jobs, prepare_cmds,
+                 descr, access, container_environs, resources,
+                 local_env, environs, max_jobs, prepare_cmds,
                  processor, devices, extras, features, time_limit):
         getlogger().debug(f'Initializing system partition {name!r}')
         self._parent_system = parent
@@ -175,7 +176,6 @@ class SystemPartition(jsonext.JSONSerializable):
         self._launcher_type = launcher_type
         self._descr = descr
         self._access = access
-        self._container_runtime = container_runtime
         self._container_environs = container_environs
         self._local_env = local_env
         self._environs = environs
@@ -212,14 +212,6 @@ class SystemPartition(jsonext.JSONSerializable):
         '''
 
         return util.SequenceView(self._environs)
-
-    @property
-    def container_runtime(self):
-        '''The default container runtime of this partition.
-
-        :type: :class:`str` or ``None``
-        '''
-        return self._container_runtime
 
     @property
     def container_environs(self):
@@ -476,7 +468,7 @@ class System(jsonext.JSONSerializable):
 
     def __init__(self, name, descr, hostnames, modules_system,
                  preload_env, prefix, outputdir,
-                 resourcesdir, stagedir, partitions):
+                 resourcesdir, stagedir, partitions, node_data):
         getlogger().debug(f'Initializing system {name!r}')
         self._name = name
         self._descr = descr
@@ -488,6 +480,7 @@ class System(jsonext.JSONSerializable):
         self._resourcesdir = resourcesdir
         self._stagedir = stagedir
         self._partitions = partitions
+        self._node_data = node_data
 
     @classmethod
     def create(cls, site_config):
@@ -503,10 +496,9 @@ class System(jsonext.JSONSerializable):
             part_sched = getscheduler(site_config.get(f'{partid}/scheduler'))
             part_launcher = getlauncher(site_config.get(f'{partid}/launcher'))
             part_container_environs = {}
-            part_container_runtime = None
-            container_platforms = site_config.get(
-                f'{partid}/container_platforms')
-            for i, p in enumerate(container_platforms):
+            for i, p in enumerate(
+                    site_config.get(f'{partid}/container_platforms')
+            ):
                 ctype = p['type']
                 part_container_environs[ctype] = Environment(
                     name=f'__rfm_env_{ctype}',
@@ -517,12 +509,6 @@ class System(jsonext.JSONSerializable):
                         f'{partid}/container_platforms/{i}/variables'
                     )
                 )
-                if p.get('default', None):
-                    part_container_runtime = ctype
-
-            if not part_container_runtime and container_platforms:
-                # No default set, pick the first one
-                part_container_runtime = container_platforms[0]['type']
 
             env_patt = site_config.get('general/0/valid_env_names') or [r'.*']
             part_environs = [
@@ -553,7 +539,6 @@ class System(jsonext.JSONSerializable):
                     access=site_config.get(f'{partid}/access'),
                     resources=site_config.get(f'{partid}/resources'),
                     environs=part_environs,
-                    container_runtime=part_container_runtime,
                     container_environs=part_container_environs,
                     local_env=Environment(
                         name=f'__rfm_env_{part_name}',
@@ -574,6 +559,23 @@ class System(jsonext.JSONSerializable):
         # configuration parameters at the system level; if we came up to this
         # point, then all is good at the partition level, which is enough.
         site_config.select_subconfig(config_save, ignore_resolve_errors=True)
+        
+        # Check to see if node_data has been populated
+        #print("<<<<<<<<<<<<< Node data: {}".format(site_config.get('systems/0/node_data')))
+        vm_data = site_config.get('systems/0/node_data')
+        if vm_data == None:
+             vm_data_file = site_config.get('systems/0/vm_data_file')
+             vm_size = site_config.get('systems/0/vm_size')
+             if vm_data_file != None and vm_size != None:
+                 print("VM Data File: {}".format(vm_data_file))
+                 print("VM Size: {}".format(vm_size))
+                 vm_data = azure.read_vm_data_file(sysname,vm_data_file,vm_size,None,None,None)
+                 #print("VM Data: {}".format(vm_data))
+             else:
+                 print("VM Data File: {}".format(vm_data_file))
+                 print("VM Size: {}".format(vm_size))
+                 
+        
         return System(
             name=sysname,
             descr=site_config.get('systems/0/descr'),
@@ -588,7 +590,8 @@ class System(jsonext.JSONSerializable):
             outputdir=site_config.get('systems/0/outputdir'),
             resourcesdir=site_config.get('systems/0/resourcesdir'),
             stagedir=site_config.get('systems/0/stagedir'),
-            partitions=partitions
+            partitions=partitions,
+            node_data=vm_data
         )
 
     @property
@@ -598,6 +601,14 @@ class System(jsonext.JSONSerializable):
         :type: :class:`str`
         '''
         return self._name
+
+    @property
+    def node_data(self):
+        '''The node data for the system
+
+        :type: :class:`dict`
+        '''
+        return self._node_data
 
     @property
     def descr(self):
@@ -704,7 +715,8 @@ class System(jsonext.JSONSerializable):
             'outputdir': self._outputdir,
             'stagedir': self._stagedir,
             'resourcesdir': self._resourcesdir,
-            'partitions': [p.json() for p in self._partitions]
+            'partitions': [p.json() for p in self._partitions],
+            'node_data': self._node_data
         }
 
     def __str__(self):

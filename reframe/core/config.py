@@ -16,6 +16,7 @@ import tempfile
 
 import reframe
 import reframe.core.settings as settings
+import reframe.core.azure as azure
 import reframe.utility as util
 from reframe.core.environments import normalize_module_list
 from reframe.core.exceptions import ConfigError, ReframeFatalError
@@ -299,9 +300,30 @@ class _SiteConfig:
         return _SiteConfig(config, filename)
 
     def _detect_system(self):
+
+        if azure.check_if_azure_vm() == True:
+            getlogger().debug(
+                f'Detecting system using Azure'
+            )
+            # Get the system name
+            system_info = azure.get_vm_info(self._site_config['systems'])
+            #system_name, vm_type, vm_data = azure.get_vm_info(self._site_config['systems'])
+            print("System Name: {}".format(system_info[0]))
+            print("VM Type: {}".format(system_info[1]))
+            print("VM Data: {}".format(system_info[2]))
+            for idx,system in enumerate(self._site_config['systems']):
+                print("idx: {}, system: {}".format(idx,system["name"]))
+                if system_info[0] == system["name"]:
+                    print("Setting system info")
+                    self._site_config['systems'][idx]['node_data'] = system_info[2]
+            return system_info[0]
+
+            #system_data = azure.get_system_data(vm_type, vm_data_file)
+
         getlogger().debug(
             f'Detecting system using method: {self._autodetect_meth!r}'
         )
+
         hostname = _hostname(
             self._autodetect_opts[self._autodetect_meth]['use_fqdn'],
             self._autodetect_opts[self._autodetect_meth]['use_xthostname'],
