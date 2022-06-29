@@ -99,3 +99,8 @@ ENV/
 
 # Vim temp files
 *.swp
+
+# Extra dirs
+external/
+output/
+staget/
