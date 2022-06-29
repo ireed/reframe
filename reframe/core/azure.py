@@ -78,7 +78,7 @@ def get_vm_info(systems):
 
 
                 # Get information from data file and add it to the vm_data
-                vm_data = read_vm_data_file(vm_series, systems[idx]['vm_data_file'], vm_size, vm_os, vm_os_version, vm_image, systems[idx]['vm_data_file'])
+                vm_data = read_vm_data_file(vm_series, systems[idx]['vm_data_file'], vm_size, vm_os, vm_os_version, vm_image)
 
                 return [ vm_series, vm_size, vm_data ]
             else:
