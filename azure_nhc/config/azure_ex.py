@@ -18,13 +18,6 @@ site_configuration = {
             'modules_system': 'tmod32',
             'partitions': [
                 {
-                    'name': 'default',
-                    'scheduler': 'local',
-                    'launcher': 'local',
-                    'environs': ['gnu-azhpc-cos7'],
-                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
-                },
-                {
                     'name': 'hb',
                     'scheduler': 'slurm',
                     'launcher': 'srun',
@@ -44,13 +37,6 @@ site_configuration = {
             'modules_system': 'tmod32',
             'partitions': [
                 {
-                    'name': 'default',
-                    'scheduler': 'local',
-                    'launcher': 'local',
-                    'environs': ['gnu-azhpc-cos7'],
-                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
-                },
-                {
                     'name': 'hbv2',
                     'scheduler': 'slurm',
                     'launcher': 'srun',
@@ -69,13 +55,6 @@ site_configuration = {
             'hostnames': ['*_hbv3_*'],
             'modules_system': 'tmod32',
             'partitions': [
-                {
-                    'name': 'default',
-                    'scheduler': 'local',
-                    'launcher': 'local',
-                    'environs': ['gnu-azhpc-cos7'],
-                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
-                },
                 {
                     'name': 'hbv3',
                     'scheduler': 'slurm',
