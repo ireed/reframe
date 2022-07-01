@@ -51,6 +51,7 @@
             "processor": "amd",
             "eth_type": "eth_40g",
             "ib_count": 1,
+            "ib_type": "ib_edr",
             "sriov_enabled": true,
             "stream_triad": 240000,
             "stream_triad_limits": [-0.05, 0.05],

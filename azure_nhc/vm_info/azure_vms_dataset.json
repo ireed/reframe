@@ -28214,6 +28214,7 @@
             "processor": "amd",
             "eth_type": "eth_40g",
             "ib_count": 1,
+            "ib_type": "ib_edr",
             "sriov_enabled": true,
             "stream_triad": 240000,
             "stream_triad_limits": [
@@ -28224,7 +28225,14 @@
             "eth_state": "4: ACTIVE",
             "eth_pstate": "5: LinkUp",
             "eth_rate": "50 Gb/sec (2X EDR)",
-            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family",
+            "ib_state": "Active",
+            "ib_pstate": "LinkUp",
+            "ib_rate": "100",
+            "ib_cutoff_8b_latency": 2.5,
+            "ib_cutoff_4Mb_bibw": 10000,
+            "ib_link_layer": "InfiniBand",
+            "pcie_ib_name": "Infiniband controller: Mellanox Technologies MT27800 Family"
         }
     },
     "Standard_HB60-30rs": {
@@ -28284,6 +28292,7 @@
             "processor": "amd",
             "eth_type": "eth_40g",
             "ib_count": 1,
+            "ib_type": "ib_edr",
             "sriov_enabled": true,
             "stream_triad": 240000,
             "stream_triad_limits": [
@@ -28294,7 +28303,14 @@
             "eth_state": "4: ACTIVE",
             "eth_pstate": "5: LinkUp",
             "eth_rate": "50 Gb/sec (2X EDR)",
-            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family",
+            "ib_state": "Active",
+            "ib_pstate": "LinkUp",
+            "ib_rate": "100",
+            "ib_cutoff_8b_latency": 2.5,
+            "ib_cutoff_4Mb_bibw": 10000,
+            "ib_link_layer": "InfiniBand",
+            "pcie_ib_name": "Infiniband controller: Mellanox Technologies MT27800 Family"
         }
     },
     "Standard_HB60-45rs": {
@@ -28354,6 +28370,7 @@
             "processor": "amd",
             "eth_type": "eth_40g",
             "ib_count": 1,
+            "ib_type": "ib_edr",
             "sriov_enabled": true,
             "stream_triad": 240000,
             "stream_triad_limits": [
@@ -28364,7 +28381,14 @@
             "eth_state": "4: ACTIVE",
             "eth_pstate": "5: LinkUp",
             "eth_rate": "50 Gb/sec (2X EDR)",
-            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family",
+            "ib_state": "Active",
+            "ib_pstate": "LinkUp",
+            "ib_rate": "100",
+            "ib_cutoff_8b_latency": 2.5,
+            "ib_cutoff_4Mb_bibw": 10000,
+            "ib_link_layer": "InfiniBand",
+            "pcie_ib_name": "Infiniband controller: Mellanox Technologies MT27800 Family"
         }
     },
     "Standard_HB60rs": {
@@ -28415,6 +28439,7 @@
             "processor": "amd",
             "eth_type": "eth_40g",
             "ib_count": 1,
+            "ib_type": "ib_edr",
             "sriov_enabled": true,
             "stream_triad": 240000,
             "stream_triad_limits": [
@@ -28425,7 +28450,14 @@
             "eth_state": "4: ACTIVE",
             "eth_pstate": "5: LinkUp",
             "eth_rate": "50 Gb/sec (2X EDR)",
-            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family",
+            "ib_state": "Active",
+            "ib_pstate": "LinkUp",
+            "ib_rate": "100",
+            "ib_cutoff_8b_latency": 2.5,
+            "ib_cutoff_4Mb_bibw": 10000,
+            "ib_link_layer": "InfiniBand",
+            "pcie_ib_name": "Infiniband controller: Mellanox Technologies MT27800 Family"
         }
     },
     "Standard_HC44-16rs": {
