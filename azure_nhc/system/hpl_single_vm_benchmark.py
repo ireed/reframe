@@ -25,7 +25,7 @@ class HPLSingleVMTest(rfm.RunOnlyRegressionTest):
         vm_info = self.current_system.node_data
         vm_series = vm_info['vm_series']
         vmtype = vm_series.split("_",1)[0]
-        source_path = self.prefix.split("reframe",1)[0]+'reframe'+'/utils/hpl'
+        source_path = self.prefix.split("reframe",1)[0]+'reframe'+'/azure_nhc/system/hpl-utils'
         #self.sourcesdir = source_path
         stage_path = self.stagedir 
         os.system(f"cp -r {source_path}/xhpl-{vmtype} {stage_path}/") 
