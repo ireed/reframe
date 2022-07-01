@@ -13,7 +13,7 @@ site_configuration = {
             'name': 'hbrs',
             'descr': 'Azure HB',
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
-            'vm_size': 'HB120rs',
+            'vm_size': 'HB60rs',
             'hostnames': ['*_hb_*'],
             'modules_system': 'tmod32',
             'partitions': [
