@@ -8,6 +8,8 @@
             "sriov_enabled": true,
             "stream_triad": 240000,
             "stream_triad_limits": [-0.05, 0.05],
+            "hpl_performance": 1238,
+            "hpl_performance_limits": [-0.05, 0.15],
             "vm_ram": 224
         },
         "standardHBrsv2Family": {

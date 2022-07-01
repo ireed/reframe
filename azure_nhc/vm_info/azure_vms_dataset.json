@@ -28221,6 +28221,11 @@
                 -0.05,
                 0.05
             ],
+            "hpl_performance": 1238,
+            "hpl_performance_limits": [
+                -0.05,
+                0.15
+            ],
             "vm_ram": 224,
             "eth_state": "4: ACTIVE",
             "eth_pstate": "5: LinkUp",
@@ -28298,6 +28303,11 @@
             "stream_triad_limits": [
                 -0.05,
                 0.05
+            ],
+            "hpl_performance": 1238,
+            "hpl_performance_limits": [
+                -0.05,
+                0.15
             ],
             "vm_ram": 224,
             "eth_state": "4: ACTIVE",
@@ -28377,6 +28387,11 @@
                 -0.05,
                 0.05
             ],
+            "hpl_performance": 1238,
+            "hpl_performance_limits": [
+                -0.05,
+                0.15
+            ],
             "vm_ram": 224,
             "eth_state": "4: ACTIVE",
             "eth_pstate": "5: LinkUp",
@@ -28445,6 +28460,11 @@
             "stream_triad_limits": [
                 -0.05,
                 0.05
+            ],
+            "hpl_performance": 1238,
+            "hpl_performance_limits": [
+                -0.05,
+                0.15
             ],
             "vm_ram": 224,
             "eth_state": "4: ACTIVE",
