@@ -10,61 +10,79 @@ import re
 import reframe as rfm
 import reframe.utility.sanity as sn
 import reframe.utility.udeps as udeps
+from reframe.core.backends import getlauncher
 
 # rfmdocstart: osupingpong
-class StreamBenchmarkTestBase(rfm.RunOnlyRegressionTest):
-    '''Base class of Stream benchmark runtime tests'''
-
-    valid_systems = ['*:default']
-    valid_prog_environs = ['gnu-azhpc']
-    sourcesdir = None
-
-    # rfmdocstart: set_deps
-    @run_after('init')
-    def set_dependencies(self):
-        self.depends_on('StreamDownloadRunScriptsTest', udeps.by_env)
-    # rfmdocend: set_deps
-
 @rfm.simple_test
-class StreamAllVMsTest(StreamBenchmarkTestBase):
-    descr = 'Stream ALL VMs test using pssh'
+class StreamSingleVMTest(rfm.RunOnlyRegressionTest):
+    descr = 'Stream Memory Benchmark on Single VMs'
 
-    # rfmdocstart: set_exec
-    @require_deps
-    def set_sourcedir(self, StreamDownloadRunScriptsTest):
-        self.sourcesdir = os.path.join(
-            StreamDownloadRunScriptsTest(part='default', environ='gnu-azhpc').stagedir,
-            ''
-        )
-    prerun_cmds = [
-        'sh aocc-compiler-3.2.0/install.sh',
-        'source ./setenv_AOCC.sh'
-        ]
-    executable = './stream_pssh_script.sh'
+    valid_systems = ['*']
+    valid_prog_environs = ['*']
+
+    @run_after('init')
+    def set_stream_prerun_options(self):
+        vm_info = self.current_system.node_data
+        vm_series = vm_info['vm_series']
+        vmtype = vm_series.split("_",1)[0]
+        source_path = self.prefix.split("reframe",1)[0]+'reframe'+'/azure_nhc/memory/stream-utils'
+        self.prerun_cmds = [
+            f"export SYSTEM={vmtype}",
+            f"source {source_path}/setenv_AOCC.sh",
+            ]
+        if vm_series == 'hbrs_v3':
+            self.prerun_cmds.append('export OMP_NUM_THREADS=16')
+            self.prerun_cmds.append('export GOMP_CPU_AFFINITY="0,8,16,24,30,38,46,54,60,68,76,84,90,98,106,114"')
+        if vm_series == 'hbrs_v2':
+            self.prerun_cmds.append('export OMP_NUM_THREADS=32')
+            self.prerun_cmds.append('export GOMP_CPU_AFFINITY="0,3,6,10,14,18,22,26,30,33,36,40,44,48,52,56,60,63,66,70,74,78,82,86,90,93,96,100,104,108,112,116"')
+
+        self.executable = f"./stream-{vmtype} > stream-$(hostname).log"
+
+    @run_before('run')
+    def copy_files(self):
+        vm_info = self.current_system.node_data
+        vm_series = vm_info['vm_series']
+        vmtype = vm_series.split("_",1)[0]
+        source_path = self.prefix.split("reframe",1)[0]+'reframe'+'/azure_nhc/memory/stream-utils'
+        stage_path = self.stagedir 
+        os.system(f"cp {source_path}/stream-{vmtype} {stage_path}/") 
+        os.system(f"chmod +x {stage_path}/stream-{vmtype}")
+        self.prerun_cmds.append(f"cd {self.stagedir}")
+
+    cmda = "echo \" "
+    cmdb = "system: $HOSTNAME stream: $(grep 'Triad:' ./stream*.log | awk -F ' ' '{print $2}')\""
+    cmdc = "  > stream-test-results.log"
+    cmd = cmda+cmdb+cmdc
     postrun_cmds = [
-        'list=($(ls -d stream-*)); for i in ${list[@]}; do cat $i/stream*.log; done',
-        'cat stream-test-results.log',
+        'cat stream*.log',
+        cmd,
     ]
+
     @run_before('run')
     def set_test_flags(self):
         vm_info = self.current_system.node_data
         vm_series = vm_info['vm_series'] 
-        self.executable_opts = [ vm_series ]
-
+        self.job.options = [
+                '--nodes=1',
+                '--ntasks=1',
+                '--threads-per-core=1',
+                '--exclusive'
+        ]
+        if vm_series == 'hbrs_v3':
+            self.job.options.append('--cpus-per-task=120')
+        if vm_series == 'hbrs_v2':
+            self.job.options.append('--cpus-per-task=120')
+        
     @run_before('run')
-    def set_vm_series(self):
-        vm_info = self.current_system.node_data
-        vm_series = vm_info['vm_series']
-        self.variables = {
-            'VM_SERIES': vm_series
-        }
+    def replace_launcher(self):
+        self.job.launcher = getlauncher('local')()
 
     @sanity_function
     def assert_num_messages(self):
         num_tests = sn.len(sn.findall(r'stream: (\S+)',
                                          self.stagedir+'/stream-test-results.log'))
-        num_nodes = sum(1 for _ in open(self.stagedir+'/hosts.txt'))
-        return sn.assert_eq(num_tests, num_nodes)
+        return sn.assert_eq(num_tests, 1)
 
     @performance_function('MB/s')
     def extract_stream_s(self, vm='c5e'):
@@ -104,118 +122,3 @@ class StreamAllVMsTest(StreamBenchmarkTestBase):
         with open(self.outputdir+"/stream_test_results.json", "w") as outfile:
             js.dump(results, outfile, indent=4)
 
-@rfm.simple_test
-class StreamDownloadRunScriptsTest(rfm.RunOnlyRegressionTest):
-    descr = 'Download stream run scripts test'
-    valid_systems = ['*:default']
-    valid_prog_environs = ['gnu-azhpc']
-    executable = 'wget'
-    executable_opts = [
-        'https://raw.githubusercontent.com/arstgr/stream/main/stream_pssh_script.sh'  # noqa: E501
-    ]
-    postrun_cmds = [
-        'wget https://raw.githubusercontent.com/arstgr/stream/main/stream_run_script.sh',
-        'chmod +x stream_pssh_script.sh',
-        'chmod +x stream_run_script.sh'
-    ]
-
-    @run_after('init')
-    def inject_dependencies(self):
-        self.depends_on('StreamBuildTest', udeps.fully)
-
-    @require_deps
-    def set_sourcedir(self, StreamBuildTest):
-        self.sourcesdir = os.path.join(
-            StreamBuildTest(part='default', environ='gnu-azhpc').stagedir,
-            ''
-        )
-
-    @sanity_function
-    def validate_download(self):
-        return sn.assert_true(os.path.exists('stream_pssh_script.sh')) and sn.assert_true(os.path.exists('stream_run_script.sh'))
-
-@rfm.simple_test
-class StreamBuildTest(rfm.RunOnlyRegressionTest):
-    descr = 'Stream benchmark build test'
-    valid_systems = ['*:default']
-    valid_prog_environs = ['gnu-azhpc']
-    prerun_cmds = [
-        'sh aocc-compiler-3.2.0/install.sh',
-        'source ./setenv_AOCC.sh'
-        ]
-    executable = 'clang ./stream.c -o ./stream -fopenmp -mcmodel=large -DSTREAM_TYPE=double -DSTREAM_ARRAY_SIZE=260000000 -DNTIMES=100 -ffp-contract=fast -fnt-store -O3 -ffast-math -ffinite-loops'
-
-    flags = variable(dict, value={
-         'hbrs_v3': [   '-mavx2',
-                        '-arch zen2'
-                    ],
-        'hbrs_v2':  [   '-mavx2',
-                        '-arch zen2'
-                    ]
-        })
-
-    @run_after('init')
-    def inject_dependencies(self):
-        self.depends_on('StreamDownloadTest', udeps.fully)
-
-    @require_deps
-    def set_sourcedir(self, StreamDownloadTest):
-        self.sourcesdir = os.path.join(
-            StreamDownloadTest(part='default', environ='gnu-azhpc').stagedir,
-            ''
-        )
-
-    @run_before('run')
-    def set_num_compiler_flags(self):
-        vm_info = self.current_system.node_data
-        vm_series = vm_info['vm_series'] 
-        self.executable_opts = self.flags.get(vm_series, [])
-
-    @sanity_function
-    def validate_download(self):
-        return sn.assert_true(os.path.exists('stream'))
-
-@rfm.simple_test
-class StreamDownloadTest(rfm.RunOnlyRegressionTest):
-    descr = 'Download stream test'
-    valid_systems = ['*:default']
-    valid_prog_environs = ['gnu-azhpc']
-    executable = 'wget'
-    executable_opts = [
-        'https://raw.githubusercontent.com/jeffhammond/STREAM/master/stream.c'  # noqa: E501
-    ]
-
-    @run_after('init')
-    def inject_dependencies(self):
-        self.depends_on('AOCCDownloadTest', udeps.fully)
-
-    @require_deps
-    def set_sourcedir(self, AOCCDownloadTest):
-        self.sourcesdir = os.path.join(
-            AOCCDownloadTest(part='default', environ='gnu-azhpc').stagedir,
-            ''
-        )
-
-    @sanity_function
-    def validate_download(self):
-        return sn.assert_true(os.path.exists('stream.c'))
-
-# rfmdocstart: aoccdownload
-@rfm.simple_test
-class AOCCDownloadTest(rfm.RunOnlyRegressionTest):
-    descr = 'Download AOCC compiler'
-    valid_systems = ['*:default']
-    valid_prog_environs = ['gnu-azhpc']
-    executable = 'wget'
-    executable_opts = [
-        'https://developer.amd.com/wordpress/media/files/aocc-compiler-3.2.0.tar'  # noqa: E501
-    ]
-    postrun_cmds = [
-        'tar -xf aocc-compiler-3.2.0.tar'
-    ]
-
-
-    @sanity_function
-    def validate_download(self):
-        return sn.assert_true(os.path.exists('aocc-compiler-3.2.0.tar'))
-# rfmdocend: osudownload

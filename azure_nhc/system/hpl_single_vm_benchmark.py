@@ -17,9 +17,20 @@ class HPLSingleVMTest(rfm.RunOnlyRegressionTest):
     descr = 'HPL Single VM test using pssh'
     valid_systems = ['*']
     valid_prog_environs = ['*']
-#    num_tasks = 1
     
-#    @run_after('init')
+    @run_after('init')
+    def def_ntasks(self):
+        vm_info = self.current_system.node_data
+        vm_series = vm_info['vm_series']
+        if vm_series == 'hbrs_v3':
+            self.num_tasks = 16
+        elif vm_series == 'hbrs_v2':
+            self.num_tasks = 32
+        elif vm_series == 'hbrs':
+            self.num_tasks = 15
+        elif vm_series == 'hcrs':
+            self.num_tasks = 4
+
     @run_before('run')
     def copy_files(self):
         vm_info = self.current_system.node_data
@@ -32,6 +43,9 @@ class HPLSingleVMTest(rfm.RunOnlyRegressionTest):
         os.system(f"cp -r {source_path}/appfile_ccx_{vm_series} {stage_path}/")
         os.system(f"cp -r {source_path}/xhpl_ccx.sh {stage_path}/")
         os.system(f"cp -r {source_path}/HPL.dat {stage_path}/")
+        os.system(f"chmod +x {stage_path}/xhpl-{vmtype}")
+        os.system(f"chmod +x {stage_path}/appfile_ccx_{vm_series}")
+        os.system(f"chmod +x {stage_path}/xhpl_ccx.sh")
   
     @run_after('init')
     def set_hpl_prerun_options(self):
@@ -50,6 +64,9 @@ class HPLSingleVMTest(rfm.RunOnlyRegressionTest):
         if vm_series == 'hbrs':
             self.prerun_cmds.append('sed -i "s/4           Ps/5           Ps/g" HPL.dat')
             self.prerun_cmds.append('sed -i "s/4            Qs/3            Qs/g" HPL.dat')
+        if vm_series == 'hcrs':
+            self.prerun_cmds.append('sed -i "s/4           Ps/2           Ps/g" HPL.dat')
+            self.prerun_cmds.append('sed -i "s/4            Qs/2            Qs/g" HPL.dat')
 
     executable = 'mpirun'
     cmda = "echo "
@@ -88,13 +105,13 @@ class HPLSingleVMTest(rfm.RunOnlyRegressionTest):
             ]
         elif vm_series == 'hbrs_v2':
             self.executable_opts = [
-                '-np 30',
+                '-np 32',
                 '--mca mpi_leave_pinned 1',
                 '--bind-to none',
                 '--report-bindings',
                 '--mca btl self,vader',
                 '--map-by ppr:1:l3cache',
-                '-x OMP_NUM_THREADS=4',
+                '-x OMP_NUM_THREADS=3',
                 '-x OMP_PROC_BIND=TRUE',
                 '-x OMP_PLACES=cores',
                 '-x LD_LIBRARY_PATH',
@@ -102,8 +119,8 @@ class HPLSingleVMTest(rfm.RunOnlyRegressionTest):
             ]
             self.job.options = [
                 '--nodes=1',
-                '--ntasks=30',
-                '--cpus-per-task=4',
+                '--ntasks=32',
+                '--cpus-per-task=3',
                 '--threads-per-core=1'
             ]
         elif vm_series == 'hbrs':
@@ -124,6 +141,26 @@ class HPLSingleVMTest(rfm.RunOnlyRegressionTest):
                 '--nodes=1',
                 '--ntasks=15',
                 '--cpus-per-task=4',
+                '--threads-per-core=1'
+            ]
+        elif vm_series == 'hcrs':
+            self.executable_opts = [
+                '-np 4',
+                '--mca mpi_leave_pinned 1',
+                '--bind-to none',
+                '--report-bindings',
+                '--mca btl self,vader',
+                '--map-by ppr:1:l3cache',
+                '-x OMP_NUM_THREADS=11',
+                '-x OMP_PROC_BIND=TRUE',
+                '-x OMP_PLACES=cores',
+                '-x LD_LIBRARY_PATH',
+                '-app ./appfile_ccx_hcrs  >> hpl-$HOSTNAME.log'
+            ]
+            self.job.options = [
+                '--nodes=1',
+                '--ntasks=4',
+                '--cpus-per-task=11',
                 '--threads-per-core=1'
             ]
 
