@@ -22,8 +22,10 @@
             "sriov_enabled": true,
             "stream_triad": 320000,
             "stream_triad_limits": [-0.05, 0.05],
-            "hpl_performance": 2475,
+            "hpl_performance": 2650,
             "hpl_performance_limits": [-0.05, 0.15],
+            "fio_writetpt": 1000,
+            "fio_writetpt_limits": [-0.05, 0.15],
             "vm_ram": 448
         },
         "standardHBv3Family": {
@@ -38,6 +40,8 @@
             "stream_triad_limits": [-0.05, 0.05],
             "hpl_performance": 2635,
             "hpl_performance_limits": [-0.05, 0.15],
+            "fio_writetpt": 1300,
+            "fio_writetpt_limits": [-0.05, 0.15],
             "vm_ram": 448
         },
         "standardHCSFamily": {
@@ -48,6 +52,8 @@
             "sriov_enabled": true,
             "stream_triad": 180000,
             "stream_triad_limits": [-0.05, 0.05],
+            "hpl_performance": 1780,
+            "hpl_performance_limits": [-0.05, 0.15],
             "vm_ram": 346
         },
 	    "standardHFamily": {
