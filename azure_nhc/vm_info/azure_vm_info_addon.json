@@ -121,7 +121,7 @@
             "ib_count": 8,
             "ib_type": "ib_hdr",
             "gpu_count": 8,
-            "gpu_type": "gpu_a100_40gb_sxm",
+            "gpu_type": "gpu_a100_80gb_sxm",
             "nvme_count": 8,
             "nvme_type": "nvme_1tb",
             "sriov_enabled": true,
