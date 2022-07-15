@@ -181,31 +181,36 @@
         "gpu_v100_pcie":{
              "gpu_htod_bw": 12.2,
              "gpu_dtoh_bw": 11.1,
-             "gpu_bw_variation": [10.0, 14.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },	
         "gpu_v100_sxm":{
              "gpu_htod_bw": 13.2,
              "gpu_dtoh_bw": 12.1,
-             "gpu_bw_variation": [11.0, 14.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },	
         "gpu_a100_40gb_sxm":{
              "gpu_htod_bw": 26.2,
              "gpu_dtoh_bw": 24.1,
-             "gpu_bw_variation": [23.0, 27.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },
         "gpu_a100_80gb_pcie":{
              "gpu_htod_bw": 26.2,
              "gpu_dtoh_bw": 24.1,
-             "gpu_bw_variation": [23.0, 27.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },
         "gpu_a100_80gb_sxm":{
              "gpu_htod_bw": 26.2,
              "gpu_dtoh_bw": 24.1,
-             "gpu_bw_variation": [23.0, 27.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },
         "nvme_1tb":{
