@@ -70,13 +70,16 @@ site_configuration = {
             'name': 'hcrs',
             'descr': 'Azure HC',
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
+            'vm_size': 'HC44rs',
             'hostnames': ['*_hc_*'],
             'modules_system': 'tmod32',
             'partitions': [
                 {
-                    'name': 'default',
-                    'scheduler': 'local',
-                    'launcher': 'local',
+                    'name': 'hc',
+                    'scheduler': 'slurm',
+                    'launcher': 'srun',
+                    'max_jobs': 100,
+                    'access': ['-p hc'],
                     'environs': ['gnu-azhpc-cos7'],
                     'prepare_cmds': ['source /etc/profile.d/modules.sh']
                 }

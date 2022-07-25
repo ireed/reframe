@@ -22,8 +22,10 @@
             "sriov_enabled": true,
             "stream_triad": 320000,
             "stream_triad_limits": [-0.05, 0.05],
-            "hpl_performance": 2475,
+            "hpl_performance": 2650,
             "hpl_performance_limits": [-0.05, 0.15],
+            "fio_writetpt": 1000,
+            "fio_writetpt_limits": [-0.05, 0.15],
             "vm_ram": 448
         },
         "standardHBv3Family": {
@@ -38,6 +40,8 @@
             "stream_triad_limits": [-0.05, 0.05],
             "hpl_performance": 2635,
             "hpl_performance_limits": [-0.05, 0.15],
+            "fio_writetpt": 1300,
+            "fio_writetpt_limits": [-0.05, 0.15],
             "vm_ram": 448
         },
         "standardHCSFamily": {
@@ -48,6 +52,8 @@
             "sriov_enabled": true,
             "stream_triad": 180000,
             "stream_triad_limits": [-0.05, 0.05],
+            "hpl_performance": 1780,
+            "hpl_performance_limits": [-0.05, 0.15],
             "vm_ram": 346
         },
 	    "standardHFamily": {
@@ -99,7 +105,7 @@
             "processor": "amd",
             "eth_type": "eth_40g",
             "ib_count": 8,
-            "ib_type": "ib_edr",
+            "ib_type": "ib_hdr",
             "gpu_count": 8,
             "gpus_type": "gpu_a100_40gb_sxm",
             "nvme_count": 8,
@@ -113,9 +119,9 @@
             "processor": "amd",
             "eth_type": "eth_40g",
             "ib_count": 8,
-            "ib_type": "ib_edr",
+            "ib_type": "ib_hdr",
             "gpu_count": 8,
-            "gpu_type": "gpu_a100_40gb_sxm",
+            "gpu_type": "gpu_a100_80gb_sxm",
             "nvme_count": 8,
             "nvme_type": "nvme_1tb",
             "sriov_enabled": true,
@@ -175,31 +181,36 @@
         "gpu_v100_pcie":{
              "gpu_htod_bw": 12.2,
              "gpu_dtoh_bw": 11.1,
-             "gpu_bw_variation": [10.0, 14.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },	
         "gpu_v100_sxm":{
              "gpu_htod_bw": 13.2,
              "gpu_dtoh_bw": 12.1,
-             "gpu_bw_variation": [11.0, 14.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },	
         "gpu_a100_40gb_sxm":{
              "gpu_htod_bw": 26.2,
              "gpu_dtoh_bw": 24.1,
-             "gpu_bw_variation": [23.0, 27.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },
         "gpu_a100_80gb_pcie":{
              "gpu_htod_bw": 26.2,
              "gpu_dtoh_bw": 24.1,
-             "gpu_bw_variation": [23.0, 27.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },
         "gpu_a100_80gb_sxm":{
              "gpu_htod_bw": 26.2,
              "gpu_dtoh_bw": 24.1,
-             "gpu_bw_variation": [23.0, 27.0],
+	     "gpu_dtoh_bw_limits": [22.0, 26.5],
+	     "gpu_htod_bw_limits": [25.0, 27.0],
              "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
         },
         "nvme_1tb":{
