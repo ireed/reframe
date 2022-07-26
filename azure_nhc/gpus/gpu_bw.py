@@ -15,8 +15,8 @@ class CudaBandwidthTest(rfm.RunOnlyRegressionTest):
     '''Base class for Cuda bandwidth benchmark runtime test'''
     #valid_systems = ['*']
     valid_prog_environs = ['*']
-    valid_systems = ['ndasr_v4', 'ndamsr_a100_v4']
-    executable = 'bash check-vm-gpu-bw.sh'
+    valid_systems = ['ndasr_v4', 'ndamsr_a100_v4', 'ncads_a100_v4', 'ndrs_v2']
+    executable = 'python3 check-vm-gpu-bw.py'
     #valid_prog_environs = ['gnu']
 
     @run_before('run')
@@ -28,7 +28,7 @@ class CudaBandwidthTest(rfm.RunOnlyRegressionTest):
         source_path = self.prefix.split("reframe",1)[0]+'reframe'+'/azure_nhc/gpus/utils'
         #self.sourcesdir = source_path
         stage_path = self.stagedir 
-        os.system(f"ln -s {source_path}/check-vm-gpu-bw.sh {stage_path}/")
+        os.system(f"ln -s {source_path}/check-vm-gpu-bw.py {stage_path}/")
         os.system(f"ln -s {source_path}/gpu-bwtest {stage_path}/")
 
     @sanity_function
