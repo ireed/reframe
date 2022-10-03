@@ -118,6 +118,38 @@ site_configuration = {
             ]
         },
         {
+            'name': 'ndrs_v2',
+            'descr': 'Azure NDrs v2',
+            'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
+            'hostnames': [''],
+            'modules_system': 'tmod4',
+            'partitions': [
+                {
+                    'name': 'gpu',
+                    'scheduler': 'local',
+                    'launcher': 'local',
+                    'environs': ['gnu-azhpc'],
+                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
+                }
+            ]
+        },
+        {
+            'name': 'ncads_a100_v4',
+            'descr': 'Azure nc v4',
+            'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
+            'hostnames': [''],
+            'modules_system': 'tmod4',
+            'partitions': [
+                {
+                    'name': 'gpu',
+                    'scheduler': 'local',
+                    'launcher': 'local',
+                    'environs': ['gnu-azhpc'],
+                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
+                }
+            ]
+        },
+        {
             'name': 'generic',
             'descr': 'Generic example system',
             'hostnames': ['.*'],
@@ -141,7 +173,7 @@ site_configuration = {
         },
         {
             'name': 'gnu-azhpc',
-            'modules': ['gcc-9.2.0', 'mpi/hpcx'],
+            'modules': ['mpi/hpcx'],
             'cc': 'gcc',
             'cxx': 'g++',
             'ftn': 'gfortran'
