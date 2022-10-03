@@ -26,8 +26,8 @@ from reframe.utility import ScopedDict
 
 def check_if_azure_vm():
     print("Checking if this is an azure vm")
-#    if os.path.exists('/etc/waagent.conf'):
-#        _get_azure_vm_info()
+    if not os.path.exists('/etc/waagent.conf'):
+        return False
     return True
 
 def get_vm_info(systems):
