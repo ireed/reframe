@@ -2168,7 +2168,17 @@
         "restrictions": [],
         "size": "D16ads_v5",
         "tier": "Standard",
-        "series": "dads_v5"
+        "series": "dads_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D16as_v4": {
         "apiVersions": null,
@@ -3021,7 +3031,17 @@
         "restrictions": [],
         "size": "D2ads_v5",
         "tier": "Standard",
-        "series": "dads_v5"
+        "series": "dads_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D2as_v4": {
         "apiVersions": null,
@@ -3927,7 +3947,17 @@
         "restrictions": [],
         "size": "D32ads_v5",
         "tier": "Standard",
-        "series": "dads_v5"
+        "series": "dads_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D32as_v4": {
         "apiVersions": null,
@@ -4830,7 +4860,17 @@
         "restrictions": [],
         "size": "D48ads_v5",
         "tier": "Standard",
-        "series": "dads_v5"
+        "series": "dads_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D48as_v4": {
         "apiVersions": null,
@@ -5581,7 +5621,17 @@
         "restrictions": [],
         "size": "D4ads_v5",
         "tier": "Standard",
-        "series": "dads_v5"
+        "series": "dads_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D4as_v4": {
         "apiVersions": null,
@@ -6535,7 +6585,17 @@
         "restrictions": [],
         "size": "D64ads_v5",
         "tier": "Standard",
-        "series": "dads_v5"
+        "series": "dads_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D64as_v4": {
         "apiVersions": null,
@@ -7286,7 +7346,17 @@
         "restrictions": [],
         "size": "D8ads_v5",
         "tier": "Standard",
-        "series": "dads_v5"
+        "series": "dads_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D8as_v4": {
         "apiVersions": null,
@@ -8044,7 +8114,17 @@
         "restrictions": [],
         "size": "D96ads_v5",
         "tier": "Standard",
-        "series": "dads_v5"
+        "series": "dads_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D96as_v4": {
         "apiVersions": null,
