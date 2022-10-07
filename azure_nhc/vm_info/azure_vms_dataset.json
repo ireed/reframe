@@ -2301,7 +2301,17 @@
         "restrictions": [],
         "size": "D16as_v5",
         "tier": "Standard",
-        "series": "das_v5"
+        "series": "das_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D16a_v4": {
         "apiVersions": null,
@@ -3145,7 +3155,17 @@
         "restrictions": [],
         "size": "D2as_v5",
         "tier": "Standard",
-        "series": "das_v5"
+        "series": "das_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D2a_v4": {
         "apiVersions": null,
@@ -4040,7 +4060,17 @@
         "restrictions": [],
         "size": "D32as_v5",
         "tier": "Standard",
-        "series": "das_v5"
+        "series": "das_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D32a_v4": {
         "apiVersions": null,
@@ -4933,7 +4963,17 @@
         "restrictions": [],
         "size": "D48as_v5",
         "tier": "Standard",
-        "series": "das_v5"
+        "series": "das_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D48a_v4": {
         "apiVersions": null,
@@ -5675,7 +5715,17 @@
         "restrictions": [],
         "size": "D4as_v5",
         "tier": "Standard",
-        "series": "das_v5"
+        "series": "das_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D4a_v4": {
         "apiVersions": null,
@@ -6618,7 +6668,17 @@
         "restrictions": [],
         "size": "D64as_v5",
         "tier": "Standard",
-        "series": "das_v5"
+        "series": "das_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D64a_v4": {
         "apiVersions": null,
@@ -7360,7 +7420,17 @@
         "restrictions": [],
         "size": "D8as_v5",
         "tier": "Standard",
-        "series": "das_v5"
+        "series": "das_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D8a_v4": {
         "apiVersions": null,
@@ -8107,7 +8177,17 @@
         "restrictions": [],
         "size": "D96as_v5",
         "tier": "Standard",
-        "series": "das_v5"
+        "series": "das_v5",
+        "nhc_values": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "50 Gb/sec (2X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27710 Family"
+        }
     },
     "Standard_D96a_v4": {
         "apiVersions": null,
@@ -32299,7 +32379,36 @@
         "restrictions": [],
         "size": "NC24ads_A100_v4",
         "tier": "Standard",
-        "series": "ncads_a100_v4"
+        "series": "ncads_a100_v4",
+        "nhc_values": {
+            "processor": "intel",
+            "eth_type": "eth_80g",
+            "ib_count": 0,
+            "gpu_count": 4,
+            "gpu_type": "gpu_a100_80gb_pcie",
+            "sriov_enabled": true,
+            "stream_triad": 105000,
+            "stream_triad_limits": [
+                -0.05,
+                0.05
+            ],
+            "vm_ram": 440,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "100 Gb/sec (4X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27800 Family",
+            "gpu_htod_bw": 26.2,
+            "gpu_dtoh_bw": 24.1,
+            "gpu_dtoh_bw_limits": [
+                22.0,
+                26.5
+            ],
+            "gpu_htod_bw_limits": [
+                25.0,
+                27.0
+            ],
+            "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
+        }
     },
     "Standard_NC24r": {
         "apiVersions": null,
@@ -32787,7 +32896,36 @@
         "restrictions": [],
         "size": "NC48ads_A100_v4",
         "tier": "Standard",
-        "series": "ncads_a100_v4"
+        "series": "ncads_a100_v4",
+        "nhc_values": {
+            "processor": "intel",
+            "eth_type": "eth_80g",
+            "ib_count": 0,
+            "gpu_count": 4,
+            "gpu_type": "gpu_a100_80gb_pcie",
+            "sriov_enabled": true,
+            "stream_triad": 105000,
+            "stream_triad_limits": [
+                -0.05,
+                0.05
+            ],
+            "vm_ram": 440,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "100 Gb/sec (4X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27800 Family",
+            "gpu_htod_bw": 26.2,
+            "gpu_dtoh_bw": 24.1,
+            "gpu_dtoh_bw_limits": [
+                22.0,
+                26.5
+            ],
+            "gpu_htod_bw_limits": [
+                25.0,
+                27.0
+            ],
+            "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
+        }
     },
     "Standard_NC4as_T4_v3": {
         "apiVersions": null,
@@ -33295,7 +33433,36 @@
         "restrictions": [],
         "size": "NC96ads_A100_v4",
         "tier": "Standard",
-        "series": "ncads_a100_v4"
+        "series": "ncads_a100_v4",
+        "nhc_values": {
+            "processor": "intel",
+            "eth_type": "eth_80g",
+            "ib_count": 0,
+            "gpu_count": 4,
+            "gpu_type": "gpu_a100_80gb_pcie",
+            "sriov_enabled": true,
+            "stream_triad": 105000,
+            "stream_triad_limits": [
+                -0.05,
+                0.05
+            ],
+            "vm_ram": 440,
+            "eth_state": "4: ACTIVE",
+            "eth_pstate": "5: LinkUp",
+            "eth_rate": "100 Gb/sec (4X EDR)",
+            "pcie_accel_net_name": "Ethernet controller: Mellanox Technologies MT27800 Family",
+            "gpu_htod_bw": 26.2,
+            "gpu_dtoh_bw": 24.1,
+            "gpu_dtoh_bw_limits": [
+                22.0,
+                26.5
+            ],
+            "gpu_htod_bw_limits": [
+                25.0,
+                27.0
+            ],
+            "pcie_gpu_name": "3D controller: NVIDIA Corporation Device"
+        }
     },
     "Standard_ND40rs_v2": {
         "apiVersions": null,
@@ -33557,7 +33724,7 @@
             "ib_count": 8,
             "ib_type": "ib_hdr",
             "gpu_count": 8,
-            "gpus_type": "gpu_a100_40gb_sxm",
+            "gpu_type": "gpu_a100_40gb_sxm",
             "nvme_count": 8,
             "nvme_type": "nvme_1tb",
             "sriov_enabled": true,
@@ -33578,6 +33745,17 @@
             "ib_cutoff_4Mb_bibw": "20000",
             "ib_link_layer": "InfiniBand",
             "pcie_ib_name": "Infiniband controller: Mellanox Technologies MT28908 Family",
+            "gpu_htod_bw": 26.2,
+            "gpu_dtoh_bw": 24.1,
+            "gpu_dtoh_bw_limits": [
+                22.0,
+                26.5
+            ],
+            "gpu_htod_bw_limits": [
+                25.0,
+                27.0
+            ],
+            "pcie_gpu_name": "3D controller: NVIDIA Corporation Device",
             "pcie_nvme_name": "Non-Volatile memory controller: Microsoft Corporation Device b111"
         }
     },

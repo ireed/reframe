@@ -1,5 +1,11 @@
 {
     "family":{
+        "standardDASv5Family": {
+            "processor": "amd",
+            "eth_type": "eth_40g",
+            "ib_count": 0,
+            "vm_ram": 384
+        },
         "standardHBSFamily": {
             "processor": "amd",
             "eth_type": "eth_40g",

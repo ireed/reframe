@@ -10,6 +10,25 @@
 site_configuration = {
     'systems': [
         {
+            'name': 'dasv5',
+            'descr': 'Azure Das v5',
+            'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
+            'vm_size': 'D96as_v5',
+            'hostnames': ['*_dasv5_*'],
+            'modules_system': 'tmod4',
+            'partitions': [
+                {
+                    'name': 'hb',
+                    'scheduler': 'slurm',
+                    'launcher': 'srun',
+                    'max_jobs': 100,
+                    'access': ['-p hb'],
+                    'environs': ['gnu-azhpc'],
+                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
+                }
+            ]
+        },
+        {
             'name': 'hbrs',
             'descr': 'Azure HB',
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
