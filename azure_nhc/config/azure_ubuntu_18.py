@@ -10,50 +10,12 @@
 site_configuration = {
     'systems': [
         {
-            'name': 'das_v5',
-            'descr': 'Azure Das v5',
-            'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
-            'vm_size': 'D96as_v5',
-            'hostnames': ['*_dasv5_*'],
-            'modules_system': 'tmod4',
-            'partitions': [
-                {
-                    'name': 'hb',
-                    'scheduler': 'slurm',
-                    'launcher': 'srun',
-                    'max_jobs': 100,
-                    'access': ['-p hb'],
-                    'environs': ['gnu-azhpc'],
-                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
-                }
-            ]
-        },
-        {
-            'name': 'dads_v5',
-            'descr': 'Azure Dads v5',
-            'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
-            'vm_size': 'D96ads_v5',
-            'hostnames': ['*_dasv5_*'],
-            'modules_system': 'tmod4',
-            'partitions': [
-                {
-                    'name': 'hb',
-                    'scheduler': 'slurm',
-                    'launcher': 'srun',
-                    'max_jobs': 100,
-                    'access': ['-p hb'],
-                    'environs': ['gnu-azhpc'],
-                    'prepare_cmds': ['source /etc/profile.d/modules.sh']
-                }
-            ]
-        },
-        {
             'name': 'hbrs',
             'descr': 'Azure HB',
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
             'vm_size': 'HB60rs',
             'hostnames': ['*_hb_*'],
-            'modules_system': 'tmod4',
+            'modules_system': 'tmod32',
             'partitions': [
                 {
                     'name': 'hb',
@@ -61,7 +23,7 @@ site_configuration = {
                     'launcher': 'srun',
                     'max_jobs': 100,
                     'access': ['-p hb'],
-                    'environs': ['gnu-azhpc'],
+                    'environs': ['gnu-azhpc-cos7'],
                     'prepare_cmds': ['source /etc/profile.d/modules.sh']
                 }
             ]
@@ -72,7 +34,7 @@ site_configuration = {
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
             'vm_size': 'HB120rs_v2',
             'hostnames': ['*_hbv2_*'],
-            'modules_system': 'tmod4',
+            'modules_system': 'tmod32',
             'partitions': [
                 {
                     'name': 'hbv2',
@@ -80,7 +42,7 @@ site_configuration = {
                     'launcher': 'srun',
                     'max_jobs': 100,
                     'access': ['-p hbv2'],
-                    'environs': ['gnu-azhpc'],
+                    'environs': ['gnu-azhpc-cos7'],
                     'prepare_cmds': ['source /etc/profile.d/modules.sh']
                 }
             ]
@@ -91,7 +53,7 @@ site_configuration = {
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
             'vm_size': 'HB120rs_v3',
             'hostnames': ['*_hbv3_*'],
-            'modules_system': 'tmod4',
+            'modules_system': 'tmod32',
             'partitions': [
                 {
                     'name': 'hbv3',
@@ -99,7 +61,7 @@ site_configuration = {
                     'launcher': 'srun',
                     'max_jobs': 100,
                     'access': ['-p hbv3'],
-                    'environs': ['gnu-azhpc'],
+                    'environs': ['gnu-azhpc-cos7'],
                     'prepare_cmds': ['source /etc/profile.d/modules.sh']
                 }
             ]
@@ -109,13 +71,13 @@ site_configuration = {
             'descr': 'Azure HC',
             'vm_data_file': 'azure_nhc/vm_info/azure_vms_dataset.json',
             'hostnames': ['*_hc_*'],
-            'modules_system': 'tmod4',
+            'modules_system': 'tmod32',
             'partitions': [
                 {
                     'name': 'default',
                     'scheduler': 'local',
                     'launcher': 'local',
-                    'environs': ['gnu-azhpc'],
+                    'environs': ['gnu-azhpc-cos7'],
                     'prepare_cmds': ['source /etc/profile.d/modules.sh']
                 }
             ]
@@ -176,7 +138,21 @@ site_configuration = {
         },
         {
             'name': 'gnu-azhpc',
-            'modules': ['mpi/hpcx'],
+            'modules': ['gcc-9.2.0', 'mpi/hpcx'],
+            'cc': 'gcc',
+            'cxx': 'g++',
+            'ftn': 'gfortran'
+        },
+        {
+            'name': 'gnu-azhpc-cos7',
+            'modules': ['gcc-9.2.0', 'mpi/hpcx'],
+            'cc': 'gcc',
+            'cxx': 'g++',
+            'ftn': 'gfortran'
+        },
+        {
+            'name': 'gnu-azhpc-cos8',
+            'modules': ['gcc-9.2.1', 'mpi/hpcx'],
             'cc': 'gcc',
             'cxx': 'g++',
             'ftn': 'gfortran'
