@@ -59,8 +59,8 @@ class HPLSingleVMTest(rfm.RunOnlyRegressionTest):
             'echo always | sudo tee /sys/kernel/mm/transparent_hugepage/defrag',
             ]
         if vm_series == 'hbrs_v2':
-            self.prerun_cmds.append('sed -i "s/4           Ps/6           Ps/g" HPL.dat')
-            self.prerun_cmds.append('sed -i "s/4            Qs/5            Qs/g" HPL.dat')
+            self.prerun_cmds.append('sed -i "s/4           Ps/8           Ps/g" HPL.dat')
+            self.prerun_cmds.append('sed -i "s/4            Qs/4            Qs/g" HPL.dat')
         if vm_series == 'hbrs':
             self.prerun_cmds.append('sed -i "s/4           Ps/5           Ps/g" HPL.dat')
             self.prerun_cmds.append('sed -i "s/4            Qs/3            Qs/g" HPL.dat')
