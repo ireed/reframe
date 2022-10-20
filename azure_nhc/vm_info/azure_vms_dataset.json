@@ -28231,10 +28231,10 @@
                 -0.05,
                 0.05
             ],
-            "hpl_performance": 2650,
+            "hpl_performance": 2850,
             "hpl_performance_limits": [
                 -0.05,
-                0.15
+                0.1
             ],
             "fio_writetpt": 1000,
             "fio_writetpt_limits": [
