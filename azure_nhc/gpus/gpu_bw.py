@@ -15,7 +15,7 @@ class CudaBandwidthTest(rfm.RunOnlyRegressionTest):
     '''Base class for Cuda bandwidth benchmark runtime test'''
     #valid_systems = ['*']
     valid_prog_environs = ['*']
-    valid_systems = ['ndasr_v4', 'ndamsr_a100_v4', 'ncads_a100_v4', 'ndrs_v2']
+    valid_systems = ['ndasr_v4', 'ndamsr_a100_v4', 'ncads_a100_v4', 'ndrs_v2', 'nvads_a10_v5']
     executable = 'python3 check-vm-gpu-bw.py'
     #valid_prog_environs = ['gnu']
 
